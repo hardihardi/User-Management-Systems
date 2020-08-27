@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class MenuController extends Controller
 {
@@ -13,17 +15,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $menu = Menu::orderBy('menu', 'ASC')->get();
+        return view('menu.index')->with('menu', $menu);
     }
 
     /**
@@ -34,29 +27,14 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $attr = $request->all();
+        $attr['slug'] = Str::slug($request->menu);
+        $menu = Menu::create($attr);
+        if ($menu) {
+            return redirect(route('menu.index'))->with('success', 'Menu berhasil ditambahkan.');
+        } else {
+            return redirect(route('menu.index'))->with('error', 'Gagal menambahkan menu.');
+        }
     }
 
     /**
@@ -66,9 +44,14 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Menu $menu)
     {
-        //
+        $attr = $request->all();
+        if ($menu->update($attr)) {
+            return redirect(route('menu.index'))->with('success', 'Menu berhasil diubah.');
+        } else {
+            return redirect(route('menu.index'))->with('success', 'Gagal mengubah menu.');
+        }
     }
 
     /**
@@ -77,8 +60,12 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Menu $menu)
     {
-        //
+        if ($menu->delete()) {
+            return redirect(route('menu.index'))->with('success', 'Menu berhasil dihapus.');
+        } else {
+            return redirect(route('menu.index'))->with('success', 'Gagal menghapus menu.');
+        }
     }
 }
