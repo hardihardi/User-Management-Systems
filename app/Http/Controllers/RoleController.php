@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class RoleController extends Controller
 {
@@ -13,19 +15,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::orderBy('name', 'ASC')->get();
+        return view('roles.index', compact('roles'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -34,31 +26,15 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attr = $request->all();
+        $attr['slug'] = Str::slug($request->name);
+        $roles = Role::create($attr);
+        if ($roles) {
+            return redirect(route('roles.index'))->with('success', 'Data role berhasil dibuat.');
+        } else {
+            return redirect(route('roles.index'))->with('error', 'Gagal menambahkan data.');
+        }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -66,9 +42,11 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        $attr = $request->all();
+        $role->update($attr);
+        return redirect(route('roles.index'))->with('success', 'Data role berhasil diubah.');
     }
 
     /**
@@ -77,8 +55,12 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        //
+        if ($role->delete()) {
+            return redirect(route('roles.index'))->with('success', 'Data role berhasil dihapus.');
+        } else {
+            return redirect(route('roles.index'))->with('error', 'Gagal menghapus role.');
+        }
     }
 }
