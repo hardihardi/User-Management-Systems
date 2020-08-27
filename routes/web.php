@@ -9,3 +9,4 @@ Route::get('/', function () {
 Route::get('login', 'Auth\LoginController@showFormLogin')->name('login');
 Route::get('register', 'Auth\RegisterController@showFormRegister')->name('register');
 Route::get('/dashboard', 'DashboardController@index');
+Route::resource('roles', 'RoleController');
