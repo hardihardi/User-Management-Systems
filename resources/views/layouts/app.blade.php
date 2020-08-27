@@ -17,6 +17,7 @@
 
   <!-- Custom styles for this template-->
   <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/dist/css/select2.min.css') }}" rel="stylesheet">
 
 </head>
 
@@ -85,6 +86,8 @@
   <!-- Core plugin JavaScript-->
   <script src="{{ asset('assets/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
+  <script src="{{ asset('assets/dist/js/select2.min.js') }}"></script>
+
   <!-- Custom scripts for all pages-->
   <script src="{{ asset('assets/js/sb-admin-2.min.js') }}"></script>
 
@@ -94,6 +97,12 @@
   <!-- Page level custom scripts -->
   <script src="{{ asset('assets/js/demo/chart-area-demo.js') }}"></script>
   <script src="{{ asset('assets/js/demo/chart-pie-demo.js') }}"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('.select2').select2();
+    });
+  </script>
 
 </body>
 

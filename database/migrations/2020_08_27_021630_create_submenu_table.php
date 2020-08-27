@@ -32,6 +32,6 @@ class CreateSubmenuTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('submenus');
+        Schema::dropIfExists('submenu');
     }
 }
