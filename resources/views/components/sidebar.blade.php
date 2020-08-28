@@ -29,14 +29,14 @@
       {{ $item->menu }}
     </div>
     @foreach ($submenu as $sub)
-    <!-- Nav Item - Tables -->
-    <li class="nav-item active">
-      <a class="nav-link" href="{{ route($sub->url) }}">
-        <i class="{{ $sub->icon }} fa-fw"></i>
-        <span>{{ $sub->judul }}</span></a>
-    </li>
-    <!-- Divider -->
-    <hr class="sidebar-divider my-1">
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route($sub->url) }}">
+          <i class="{{ $sub->icon }} fa-fw"></i>
+          <span>{{ $sub->judul }}</span></a>
+      </li>
+      <!-- Divider -->
+      <hr class="sidebar-divider my-1">
     @endforeach
   @endforeach
 
