@@ -11,8 +11,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('login', 'Auth\LoginController@showFormLogin')->name('login');
-Route::get('register', 'Auth\RegisterController@showFormRegister')->name('register');
 Route::get('/dashboard', 'DashboardController@index');
 
 // route resource roles
