@@ -8,14 +8,6 @@
 
   <!-- Divider -->
   <hr class="sidebar-divider my-0">
-
-  <!-- Nav Item - Dashboard -->
-  <li class="nav-item active">
-    <a class="nav-link" href="index.html">
-      <i class="fas fa-fw fa-tachometer-alt"></i>
-      <span>Dashboard</span></a>
-  </li>
-
   <!-- Divider -->
   <hr class="sidebar-divider">
   {{-- query --}}
@@ -39,12 +31,12 @@
     @foreach ($submenu as $sub)
     <!-- Nav Item - Tables -->
     <li class="nav-item active">
-      <a class="nav-link" href="#">
+      <a class="nav-link" href="{{ route($sub->url) }}">
         <i class="{{ $sub->icon }} fa-fw"></i>
         <span>{{ $sub->judul }}</span></a>
     </li>
     <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
+    <hr class="sidebar-divider my-1">
     @endforeach
   @endforeach
 

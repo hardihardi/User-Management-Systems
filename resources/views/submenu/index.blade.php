@@ -59,6 +59,9 @@
                 </tbody>
             </table>
           </div>
+          <div class="float-right">
+            {{ $submenu->links() }}
+          </div>
         </div>
       </div>
     </div>

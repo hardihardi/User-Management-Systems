@@ -9,9 +9,15 @@ use Illuminate\Support\Str;
 
 class SubmenuController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $submenu = Submenu::orderBy('menu_id', 'ASC')->paginate(10);
+        $submenu = Submenu::orderBy('menu_id', 'ASC')->paginate(5);
         return view('submenu.index')->with('submenu', $submenu);
     }
 

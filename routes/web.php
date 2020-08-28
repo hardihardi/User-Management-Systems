@@ -11,7 +11,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/dashboard', 'DashboardController@index');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 
 // route resource roles
 Route::resource('roles', 'RoleController')->except('create', 'edit', 'show');
@@ -29,3 +29,5 @@ Route::post('submenu/store', 'SubmenuController@store')->name('submenu.store');
 Route::get('submenu/{submenu:slug}/edit', 'SubmenuController@edit')->name('submenu.edit');
 Route::put('submenu/{submenu:slug}', 'SubmenuController@update')->name('submenu.update');
 Route::delete('submenu/{submenu:slug}', 'SubmenuController@destroy')->name('submenu.destroy');
+Route::get('password', 'UserController@change')->name('password.edit');
+Route::get('users', 'UserController@edit')->name('users.edit');
