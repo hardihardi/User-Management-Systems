@@ -7,9 +7,8 @@
   </a>
 
   <!-- Divider -->
-  <hr class="sidebar-divider my-0">
-  <!-- Divider -->
   <hr class="sidebar-divider">
+  <!-- Divider -->
   {{-- query --}}
   @php
     $menu = DB::select('select * from menu');
@@ -36,8 +35,8 @@
           <span>{{ $sub->judul }}</span></a>
       </li>
       <!-- Divider -->
-      <hr class="sidebar-divider my-1">
-    @endforeach
+      @endforeach
+    <hr class="sidebar-divider">
   @endforeach
 
   <hr class="sidebar-divider d-none d-md-block">
