@@ -9,7 +9,7 @@
   <div class="row mb-3">
     <div class="col-lg-8 offset-lg-2">
       <div class="text-center">
-        <img src="https://source.unsplash.com/QAB-WJcbgJk/200x200" width="200" alt="image" class="rounded-circle shadow">
+        <img src="{{ asset('/storage/'. Auth::user()->image) }}" width="200" height="200" alt="image" class="rounded-circle shadow">
       </div>
       {{-- alert --}}
       <x-alert></x-alert>
@@ -66,7 +66,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ route('users.update',Auth::user()) }}" method="post">
+        <form action="{{ route('users.update',Auth::user()->id) }}" method="post" enctype="multipart/form-data">
           @csrf
           @method('PUT')
           <div class="form-group">
