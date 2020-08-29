@@ -30,4 +30,6 @@ Route::get('submenu/{submenu:slug}/edit', 'SubmenuController@edit')->name('subme
 Route::put('submenu/{submenu:slug}', 'SubmenuController@update')->name('submenu.update');
 Route::delete('submenu/{submenu:slug}', 'SubmenuController@destroy')->name('submenu.destroy');
 Route::get('password', 'UserController@change')->name('password.edit');
-Route::get('users', 'UserController@edit')->name('users.edit');
+Route::get('users/edit/{user}', 'UserController@edit')->name('users.edit');
+Route::get('users', 'UserController@index')->name('users.index');
+Route::put('users/{user}', 'UserController@update')->name('users.update');
